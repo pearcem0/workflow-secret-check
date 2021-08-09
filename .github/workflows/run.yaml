@@ -13,19 +13,17 @@ jobs:
     name: Setup workflow variables
     runs-on: ubuntu-latest
     steps:
-    - name: Hello world action
+    - name: should be redacted
       env: # Or as an environment variable
         secret: ${{ secrets.FIND_ME }}
       run: echo $secret
-    - name: print secret
-      run: echo $secret
-      with:
-        secret: ${{ secrets[needs.setup.outputs.secret] }}
-    - name: print secret again
-      run: echo ${{  needs.setup.outputs.secret  }}
-      with:
-        secret: ${{ secrets[needs.setup.outputs.secret] }}
-    - name: print secret to file
-      run: echo ${{  needs.setup.outputs.secret  }} > test.txt && cat test.txt
-      with:
-        secret: ${{ secrets[needs.setup.outputs.secret] }}
+    - name: to file
+      env: # Or as an environment variable
+        secret: ${{ secrets.FIND_ME }}
+      run: echo $secret > test.txt
+    - name: cat test
+      run: cat test.txt
+    - name: all in one
+      env: # Or as an environment variable
+        secret: ${{ secrets.FIND_ME }}
+      run: echo $secret > test.txt && cat test.txt
