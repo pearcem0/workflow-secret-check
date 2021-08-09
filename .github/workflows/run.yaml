@@ -12,9 +12,11 @@ jobs:
   setup:
     name: Setup workflow variables
     runs-on: ubuntu-latest
-    outputs:
-      secret: ${{ FIND_ME }}
     steps:
+    - name: Hello world action
+      env: # Or as an environment variable
+        secret: ${{ secrets.FIND_ME }}
+        run: echo $secret
     - name: print secret
       run: echo $secret
       with:
