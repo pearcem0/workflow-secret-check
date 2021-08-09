@@ -1,5 +1,13 @@
 name: Deploy
 
+on:
+  workflow_dispatch:
+      branch:
+        description: The branch to deploy
+        required: true
+        default: main
+  push:
+    branches: [main]
 jobs:
   setup:
     name: Setup workflow variables
