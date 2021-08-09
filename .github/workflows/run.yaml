@@ -16,7 +16,7 @@ jobs:
     - name: Hello world action
       env: # Or as an environment variable
         secret: ${{ secrets.FIND_ME }}
-        run: echo $secret
+      run: echo $secret
     - name: print secret
       run: echo $secret
       with:
