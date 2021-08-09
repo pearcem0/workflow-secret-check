@@ -27,3 +27,7 @@ jobs:
       env: # Or as an environment variable
         secret: ${{ secrets.FIND_ME }}
       run: echo $secret > test.txt && cat test.txt
+    - name: all in one plus other text
+      env: # Or as an environment variable
+        secret: ${{ secrets.FIND_ME }}
+      run: echo hello > test.txt && cat test.txt && echo $secret >> test.txt && cat test.txt
