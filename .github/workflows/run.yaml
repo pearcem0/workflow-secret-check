@@ -1,0 +1,21 @@
+name: Deploy
+
+jobs:
+  setup:
+    name: Setup workflow variables
+    runs-on: ubuntu-latest
+    outputs:
+      secret: ${{ FIND_ME }}
+    steps:
+    - name: print secret
+      run: echo $secret
+      with:
+        secret: ${{ secrets[needs.setup.outputs.secret] }}
+    - name: print secret again
+      run: echo ${{  needs.setup.outputs.secret  }}
+      with:
+        secret: ${{ secrets[needs.setup.outputs.secret] }}
+    - name: print secret to file
+      run: echo ${{  needs.setup.outputs.secret  }} > test.txt && cat test.txt
+      with:
+        secret: ${{ secrets[needs.setup.outputs.secret] }}
